@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useReducer } from 'react';
+import { CounterReduce, initialState } from './Components/CounterReduce';
+import { type } from '@testing-library/user-event/dist/type';
 
 function App() {
+
+  const [state,dispatch]=useReducer(CounterReduce,initialState)
+  const handleclick=()=>
+  {
+    dispatch({type:'incement'})
+
+  }
+  const handlecdecrement=()=>
+  {
+    dispatch({type:'decrement'})
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>count: {state.count}</h1>
+     <button onClick={handleclick}>increment</button>
+     <button onClick={handlecdecrement}>decrement</button>
     </div>
   );
 }
